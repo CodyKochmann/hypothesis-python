@@ -169,8 +169,7 @@ class ConjectureRunner(object):
     def save_buffer(self, buffer):
         if (
             self.settings.database is not None and
-            self.database_key is not None and
-            Phase.reuse in self.settings.phases
+            self.database_key is not None
         ):
             self.settings.database.save(
                 self.database_key, hbytes(buffer)
@@ -412,7 +411,8 @@ class ConjectureRunner(object):
 
         if (
             self.settings.database is not None and
-            self.database_key is not None
+            self.database_key is not None and
+            Phase.reuse in self.settings.phases
         ):
             corpus = sorted(
                 self.settings.database.fetch(self.database_key),
