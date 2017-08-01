@@ -17,6 +17,25 @@ Hypothesis APIs come in three flavours:
 You should generally assume that an API is internal unless you have specific
 information to the contrary.
 
+-------------------
+3.15.0 - 2017-08-03
+-------------------
+
+This release documents :ref:`the previously undocumented phases feature <phases>`",
+making it part of the official public API. It also updates how the example
+database is used. Principally:
+
+* A ``Phases.reuse`` argument will now correctly control whether examples
+  from the database are run (it previously did exactly the wrong thing and
+  controlled whether examples would be *saved*).
+* Hypothesis will no longer try to rerun *all* previously failing examples.
+  Instead it will replay the smallest previously failing example and a
+  selection of other examples that are likely to trigger any other bugs that
+  will found. This prevents a previous failure from dominating your tests
+  unnecessarily.
+* As a result of the previous change, Hypothesis will be slower about clearing
+  out old examples from the database that are no longer failing (because it can
+  only clear out ones that it actually runs).
 
 -------------------
 3.14.2 - 2017-08-03
